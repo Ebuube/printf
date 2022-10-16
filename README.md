@@ -27,12 +27,14 @@ You need to handle the following conversion specifiers:
 	- `%`
 
 ### NOTE
-* You don’t have to reproduce the buffer handling of the C library printf function
+These were not considered in creating this new function \_printf()
 
-* You don’t have to handle the flag characters
+* It doesn't reproduce the buffer handling of the C library printf function
 
-* You don’t have to handle field width
+* It doesn't handle the flag characters
 
-* You don’t have to handle precision
+* It doesn't handle field width
 
-* You don’t have to handle the length modifiers
+* It doesn't handle precision
+
+* It doesn't handle the length modifiers
