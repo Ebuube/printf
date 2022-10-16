@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+testmain.c /* for testing the code manually. Not meant to be pushed to github */
 
 # Object files
 *.o
