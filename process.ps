@@ -1,0 +1,55 @@
+#	THIS ENUMERATES THE PROCESS WE ARE GOING TO USE TO WRITE THE PROGRAM
+
+## basically a pseudocode.
+
+Given an input example
+_printf("Hello World %c. How is %s? My battery is 15%%.", 'm', "my_name");
+
+The format string is
+	"Hello World %c. How is %s? My battery is 15%%."
+
+START
+
+LET counter = 0
+LET my_char
+LET my_arg
+LET my_string
+
+WHILE NOT(End of format string)
+	my_char = Get one character from the format string
+	IF the my_char is not '%'
+		print it to stdout
+		counter = counter + 1 /* Increment counter by 1 */
+		NEXT ITERATION
+	ELSE
+		my_char = Get the next character from the format string
+		/* Using a switch statement to work on the next character */
+
+		switch (my_char)
+		{
+		case 'c':
+			/* get next argument as character from the variable list */
+			my_char = next-argument
+			/* call write_char function to print my_char and
+			and increment counter by one */
+			write_char(my_char)
+			counter = counter + 1
+			NEXT ITERATION
+		case 's':
+			/* get next argument as string from the variable list */
+			my_string = next-argument
+			/* print the string and add its length to the counter */
+			write_string(my_string)
+			counter = counter + length_of_string(my_string)
+			NEXT ITERATION
+		case '%':
+			/* just print this percent sign and increment counter */
+			write_char('%')
+			counter = counter + 1
+			NEXT ITERATION
+		}
+
+
+IMPORTANT NOTICE
+
+This _printf() function uses a variable argument list.
