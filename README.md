@@ -26,7 +26,7 @@ You need to handle the following conversion specifiers:
 	- `s`
 	- `%`
 
-## NOTE
+### NOTE
 * You don’t have to reproduce the buffer handling of the C library printf function
 
 * You don’t have to handle the flag characters
