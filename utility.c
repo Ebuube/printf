@@ -1,4 +1,5 @@
 /* Utility functions */
+#include "main.h"
 
 #include <unistd.h>
 
@@ -34,5 +35,36 @@ int _write_string(const char *str)
 	for (counter = 0; str[counter]; counter++)
 		write(1, &str[counter], 1);
 
+	return (counter);
+}
+
+/**
+ * _write_decimal - prints a decimal number to the screen
+ * @d: the decimal to print
+ *
+ * Descriptio: This is uses a recursive function.
+ * Return: The number of digits in the number
+ */
+int _write_decimal(long d)
+{
+	int counter = 0;
+	char _negative_sign = '-';
+
+	if (d < 0)
+	{
+		write(1, &_negative_sign, 1);
+		counter++;
+		d = (-1) * d;
+	}
+	if ((d % 10 == 0) && d < 10)
+	{
+		return (1);
+	}
+	else
+	{
+		counter = 1 + _write_decimal((d / 10));
+		d = (d % 10) + '0';
+		write(1, &d, 1);
+	}
 	return (counter);
 }

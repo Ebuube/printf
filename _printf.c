@@ -12,6 +12,7 @@ int _printf(const char *format, ...)
 {
 	va_list my_list;
 	int counter = 0, i = 0;
+	int my_int = 0;
 	char my_char = 0;
 	char *my_string = 0;
 
@@ -37,6 +38,10 @@ int _printf(const char *format, ...)
 				break;
 			case '%':
 				counter += _write_char('%');
+				break;
+			case 'd':
+				my_int = va_arg(my_list, int);
+				counter += _write_decimal(my_int);
 				break;
 			}
 		}
