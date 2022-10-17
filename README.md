@@ -22,10 +22,10 @@ See man 3 printf for more detail.
 
 You need to handle the following conversion specifiers:
 
-	- `c`
-	- `s`
-	- `%`
-	- `d`
+	- c
+	- s
+	- %
+	- d
 
 ### NOTE
 These were not considered in creating this new function \_printf()
