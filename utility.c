@@ -116,3 +116,53 @@ void specifiers(const char *format, int *pos, va_list *x_list, int *counter)
 		break;
 	}
 }
+
+/**
+ * escapes - handles the escape characters
+ * @format: the format string to work on
+ * @pos: the position to start from
+ * @counter: the number of characters printed
+ *
+ * Description: uses a va_list variable from another function
+ * Return: void
+ */
+void escapes(const char *format, int *pos, int *counter)
+{
+	char my_char = 0;
+
+	*(pos) += 1;	/* get to the next character */
+	my_char = format[(*pos)];
+	switch (my_char)
+	{
+	case 't':
+		(*counter) += _write_char('\t');
+		break;
+	case 'n':
+		(*counter) += _write_char('\n');
+		break;
+	case 'b':
+		(*counter) += _write_char('\b');
+		break;
+	case 'v':
+		(*counter) += _write_char('\v');
+		break;
+	case 'r':
+		(*counter) += _write_char('\r');
+		break;
+	case 'f':
+		(*counter) += _write_char('\f');
+		break;
+	case 'a':
+		(*counter) += _write_char('\a');
+		break;
+	case '\\':
+		(*counter) += _write_char('\\');
+		break;
+	case '\"':
+		(*counter) += _write_char('\"');
+		break;
+	case '\'':
+		(*counter) += _write_char('\'');
+		break;
+	}
+}

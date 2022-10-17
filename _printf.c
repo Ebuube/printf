@@ -17,10 +17,17 @@ int _printf(const char *format, ...)
 	for (i = 0; format[i]; i++)
 	{
 		my_char = format[i];
-		if (my_char != '%')
-			counter += _write_char(my_char);
-		else
+		switch (my_char)
+		{
+		case '%':
 			specifiers(format, &i, &my_list, &counter);
+			break;
+		case '\\':
+			escapes(format, &i, &counter);
+			break;
+		default:
+			counter += _write_char(my_char);
+		}
 	}
 	va_end(my_list);	/* end of the variable list */
 
