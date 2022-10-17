@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdarg.h>	/* for variable list */
 
 /**
  * _printf - a function that produces output according to a format.
@@ -12,9 +11,7 @@ int _printf(const char *format, ...)
 {
 	va_list my_list;
 	int counter = 0, i = 0;
-	int my_int = 0;
 	char my_char = 0;
-	char *my_string = 0;
 
 	va_start(my_list, format);
 	for (i = 0; format[i]; i++)
@@ -23,28 +20,7 @@ int _printf(const char *format, ...)
 		if (my_char != '%')
 			counter += _write_char(my_char);
 		else
-		{
-			i++; /* get to the next character */
-			my_char = format[i];
-			switch (my_char)
-			{
-			case 'c':
-				my_char = va_arg(my_list, int);
-				counter += _write_char(my_char);
-				break;
-			case 's':
-				my_string = va_arg(my_list, char *);
-				counter += _write_string(my_string);
-				break;
-			case '%':
-				counter += _write_char('%');
-				break;
-			case 'd':
-				my_int = va_arg(my_list, int);
-				counter += _write_decimal(my_int);
-				break;
-			}
-		}
+			specifiers(format, &i, &my_list, &counter);
 	}
 	va_end(my_list);	/* end of the variable list */
 

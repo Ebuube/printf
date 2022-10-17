@@ -1,8 +1,6 @@
 /* Utility functions */
 #include "main.h"
 
-#include <unistd.h>
-
 /**
  * _write_char - prints a single character to the screen
  * @c: the character to print
@@ -67,4 +65,43 @@ int _write_decimal(long d)
 		write(1, &d, 1);
 	}
 	return (counter);
+}
+
+
+/**
+ * specifiers - prints items in list based on specifiers
+ * @format: the format string to work on
+ * @pos: the position to start from
+ * @x_list: the list to pick items from
+ * @counter: the number of characters printed
+ *
+ * Description: uses a va_list varible from another function
+ * Return: void
+ */
+void specifiers(const char *format, int *pos, va_list *x_list, int *counter)
+{
+	char my_char = 0;
+	int my_int = 0;
+	char *my_string = 0;
+
+	*(pos) += 1; /* get to the next character */
+	my_char = format[(*pos)];
+	switch (my_char)
+	{
+	case 'c':
+		my_char = va_arg((*x_list), int);
+		(*counter) += _write_char(my_char);
+		break;
+	case 's':
+		my_string = va_arg((*x_list), char *);
+		(*counter) += _write_string(my_string);
+		break;
+	case '%':
+		(*counter) += _write_char('%');
+		break;
+	case 'd':
+		my_int = va_arg((*x_list), int);
+		(*counter) += _write_decimal(my_int);
+		break;
+	}
 }
