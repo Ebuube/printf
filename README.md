@@ -39,3 +39,5 @@ These were not considered in creating this new function \_printf()
 * It doesn't handle precision
 
 * It doesn't handle the length modifiers
+
+* It doesn't print unkown specifiers.
