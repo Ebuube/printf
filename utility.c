@@ -1,6 +1,7 @@
 /* Utility functions */
 #include "main.h"
 
+
 /**
  * _write_char - prints a single character to the screen
  * @c: the character to print
@@ -40,12 +41,12 @@ int _write_string(const char *str)
  * _write_decimal - prints a decimal number to the screen
  * @d: the decimal to print
  *
- * Descriptio: This is uses a recursive function.
  * Return: The number of digits in the number
  */
 int _write_decimal(long d)
 {
-	int counter = 0;
+	int counter = 0, div = 0;
+	long digit = 0;
 	char _negative_sign = '-';
 
 	if (d < 0)
@@ -54,16 +55,22 @@ int _write_decimal(long d)
 		counter++;
 		d = (-1) * d;
 	}
-	if ((d % 10 == 0) && d < 10)
+
+	if (d == 0)
 	{
-		return (1);
+		return (_write_char(d + '0'));
 	}
-	else
+
+	for (; d / 10 != 0;)
 	{
-		counter = 1 + _write_decimal((d / 10));
-		d = (d % 10) + '0';
-		write(1, &d, 1);
+		for (digit = d, div = 1; digit / 10 != 0; div *= 10)
+			digit = digit / 10;
+
+		counter += _write_char(digit + '0');
+		d = d - (div * digit);
 	}
+	counter += _write_char(d + '0');
+
 	return (counter);
 }
 
@@ -100,6 +107,10 @@ void specifiers(const char *format, int *pos, va_list *x_list, int *counter)
 		(*counter) += _write_char('%');
 		break;
 	case 'd':
+		my_int = va_arg((*x_list), int);
+		(*counter) += _write_decimal(my_int);
+		break;
+	case 'i':
 		my_int = va_arg((*x_list), int);
 		(*counter) += _write_decimal(my_int);
 		break;
